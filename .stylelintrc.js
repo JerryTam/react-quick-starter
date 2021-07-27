@@ -2,11 +2,11 @@ module.exports = {
   extends: [
     'stylelint-config-standard',
     'stylelint-config-rational-order',
-    'stylelint-config-prettier'
+    'stylelint-config-prettier',
   ],
   plugins: [
     'stylelint-order',
-    'stylelint-declaration-block-no-ignored-properties'
+    'stylelint-declaration-block-no-ignored-properties',
   ],
   rules: {
     'plugin/declaration-block-no-ignored-properties': true,
@@ -17,5 +17,5 @@ module.exports = {
     'no-invalid-double-slash-comments': null,
     'rule-empty-line-before': 'always',
   },
-  ignoreFiles: ['node_modules/**/*', 'build/**/*', 'dist/**/*'],
-}
+  ignoreFiles: ['node_modules/**/*', 'build/**/*', 'dist/**/*', 'package.json'],
+};
