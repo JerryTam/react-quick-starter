@@ -18,5 +18,7 @@
   "//htmlWhitespaceSensitivity 指定HTML文件的全局空格敏感度": 0,
   "htmlWhitespaceSensitivity": "css",
   "//endOfLine 检测换行符类型，如果出现大量换行符报错，可以修改为auto不检测": 0,
-  "endOfLine": "lf"
+  "endOfLine": "lf",
+  "//jsxSingleQuote 在jsx中使用单引号代替双引号": true,
+  "jsxSingleQuote": true
 }
