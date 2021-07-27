@@ -10,7 +10,8 @@
     "lint-stylelint": "stylelint --config .stylelintrc.js src/**/*.{less,css,scss}",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "start": "webpack serve --config scripts/config/webpack.dev.config.ts",
-    "build": "NODE_ENV=production npx webpack --config scripts/config/webpack.prod.config.ts"
+    "build": "NODE_ENV=production npx webpack --config scripts/config/webpack.prod.config.ts",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "Jerry",
@@ -92,12 +93,6 @@
     "webpack-merge": "^5.8.0",
     "webpackbar": "^5.0.0-3"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint --config .commitlintrc.js -E HUSKY_GIT_PARAMS"
-    }
-  },
   "lint-staged": {
     "*.{ts,tsx,js}": [
       "eslint --config .eslintrc.js"
@@ -106,7 +101,9 @@
       "stylelint --config .stylelintrc.js"
     ],
     "*.{ts,tsx,js,json,html,yml,css,less,scss,md}": [
-      "prettier --write"
+      "prettier --write",
+      "eslint",
+      "git add"
     ]
   },
   "dependencies": {

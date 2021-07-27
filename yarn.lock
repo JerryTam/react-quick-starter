@@ -1255,6 +1255,21 @@
     "@types/connect" "*"
     "@types/node" "*"
 
+"@types/clean-css@*":
+  version "4.2.5"
+  resolved "https://registry.nlark.com/@types/clean-css/download/@types/clean-css-4.2.5.tgz#69ce62cc13557c90ca40460133f672dc52ceaf89"
+  integrity sha1-ac5izBNVfJDKQEYBM/Zy3FLOr4k=
+  dependencies:
+    "@types/node" "*"
+    source-map "^0.6.0"
+
+"@types/clean-webpack-plugin@^0.1.3":
+  version "0.1.3"
+  resolved "https://registry.npm.taobao.org/@types/clean-webpack-plugin/download/@types/clean-webpack-plugin-0.1.3.tgz#79ba075bfae7b041185a9a6c8e0843fa5c8ec471"
+  integrity sha1-eboHW/rnsEEYWppsjghD+lyOxHE=
+  dependencies:
+    clean-webpack-plugin "*"
+
 "@types/connect-history-api-fallback@*":
   version "1.3.5"
   resolved "https://registry.nlark.com/@types/connect-history-api-fallback/download/@types/connect-history-api-fallback-1.3.5.tgz#d1f7a8a09d0ed5a57aee5ae9c18ab9b803205dae"
@@ -1319,6 +1334,13 @@
     "@types/qs" "*"
     "@types/serve-static" "*"
 
+"@types/fork-ts-checker-webpack-plugin@^0.4.5":
+  version "0.4.5"
+  resolved "https://registry.nlark.com/@types/fork-ts-checker-webpack-plugin/download/@types/fork-ts-checker-webpack-plugin-0.4.5.tgz#1c9ef9e096ea4e4e35550501980ac4f72e1eebd7"
+  integrity sha1-HJ754JbqTk41VQUBmArE9y4e69c=
+  dependencies:
+    fork-ts-checker-webpack-plugin "*"
+
 "@types/glob@^7.1.1":
   version "7.1.4"
   resolved "https://registry.nlark.com/@types/glob/download/@types/glob-7.1.4.tgz#ea59e21d2ee5c517914cb4bc8e4153b99e566672"
@@ -1331,6 +1353,24 @@
   version "5.1.2"
   resolved "https://registry.nlark.com/@types/html-minifier-terser/download/@types/html-minifier-terser-5.1.2.tgz#693b316ad323ea97eed6b38ed1a3cc02b1672b57"
   integrity sha1-aTsxatMj6pfu1rOO0aPMArFnK1c=
+
+"@types/html-minifier@*":
+  version "4.0.1"
+  resolved "https://registry.nlark.com/@types/html-minifier/download/@types/html-minifier-4.0.1.tgz#9486ffc144f8d7b8f75b07939c500ac3d73617a0"
+  integrity sha1-lIb/wUT417j3WweTnFAKw9c2F6A=
+  dependencies:
+    "@types/clean-css" "*"
+    "@types/relateurl" "*"
+    "@types/uglify-js" "*"
+
+"@types/html-webpack-plugin@^3.2.6":
+  version "3.2.6"
+  resolved "https://registry.nlark.com/@types/html-webpack-plugin/download/@types/html-webpack-plugin-3.2.6.tgz#07951aaf0fa260dbf626f9644f1d13106d537625"
+  integrity sha1-B5Uarw+iYNv2JvlkTx0TEG1TdiU=
+  dependencies:
+    "@types/html-minifier" "*"
+    "@types/tapable" "^1"
+    "@types/webpack" "^4"
 
 "@types/http-proxy@^1.17.5":
   version "1.17.7"
@@ -1428,6 +1468,11 @@
     "@types/scheduler" "*"
     csstype "^3.0.2"
 
+"@types/relateurl@*":
+  version "0.2.29"
+  resolved "https://registry.nlark.com/@types/relateurl/download/@types/relateurl-0.2.29.tgz#68ccecec3d4ffdafb9c577fe764f912afc050fe6"
+  integrity sha1-aMzs7D1P/a+5xXf+dk+RKvwFD+Y=
+
 "@types/scheduler@*":
   version "0.16.2"
   resolved "https://registry.nlark.com/@types/scheduler/download/@types/scheduler-0.16.2.tgz#1a62f89525723dde24ba1b01b092bf5df8ad4d39"
@@ -1521,7 +1566,7 @@
     "@types/source-list-map" "*"
     source-map "^0.7.3"
 
-"@types/webpack@^4":
+"@types/webpack@^4", "@types/webpack@^4.4.31":
   version "4.41.30"
   resolved "https://registry.nlark.com/@types/webpack/download/@types/webpack-4.41.30.tgz?cache=0&sync_timestamp=1625252475628&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fwebpack%2Fdownload%2F%40types%2Fwebpack-4.41.30.tgz#fd3db6d0d41e145a8eeeafcd3c4a7ccde9068ddc"
   integrity sha1-/T220NQeFFqO7q/NPEp8zekGjdw=
@@ -2608,6 +2653,14 @@ clean-stack@^2.0.0:
   version "2.2.0"
   resolved "https://registry.nlark.com/clean-stack/download/clean-stack-2.2.0.tgz?cache=0&sync_timestamp=1621915107827&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fclean-stack%2Fdownload%2Fclean-stack-2.2.0.tgz#ee8472dbb129e727b31e8a10a427dee9dfe4008b"
   integrity sha1-7oRy27Ep5yezHooQpCfe6d/kAIs=
+
+clean-webpack-plugin@*:
+  version "3.0.0"
+  resolved "https://registry.npm.taobao.org/clean-webpack-plugin/download/clean-webpack-plugin-3.0.0.tgz#a99d8ec34c1c628a4541567aa7b457446460c62b"
+  integrity sha1-qZ2Ow0wcYopFQVZ6p7RXRGRgxis=
+  dependencies:
+    "@types/webpack" "^4.4.31"
+    del "^4.1.1"
 
 clean-webpack-plugin@^4.0.0-alpha.0:
   version "4.0.0-alpha.0"
@@ -4365,7 +4418,7 @@ forever-agent@~0.6.1:
   resolved "https://registry.nlark.com/forever-agent/download/forever-agent-0.6.1.tgz#fbc71f0c41adeb37f96c577ad1ed42d8fdacca91"
   integrity sha1-+8cfDEGt6zf5bFd60e1C2P2sypE=
 
-fork-ts-checker-webpack-plugin@^6.2.13:
+fork-ts-checker-webpack-plugin@*, fork-ts-checker-webpack-plugin@^6.2.13:
   version "6.2.13"
   resolved "https://registry.nlark.com/fork-ts-checker-webpack-plugin/download/fork-ts-checker-webpack-plugin-6.2.13.tgz#ee90a21c36d794eca481991a4233bbed6dc703d5"
   integrity sha1-7pCiHDbXlOykgZkaQjO77W3HA9U=
