@@ -3,7 +3,48 @@ import webpack, { Configuration as WebpackConfiguration } from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import ESLintPlugin from 'eslint-webpack-plugin';
+import CopyPlugin from 'copy-webpack-plugin';
+import WebpackBar from 'webpackbar';
+import HardSourceWebpackPlugin from 'hard-source-webpack-plugin';
+
 import { isDev, PROJECT_PATH } from '../constant';
+
+const getCssLoaders = (importLoaders: Number) => [
+  'style-loader',
+  {
+    loader: 'css-loader',
+    options: {
+      modules: false,
+      sourceMap: isDev,
+      importLoaders,
+    },
+  },
+  // PostCSS 处理浏览器兼容问题
+  // {
+  //   loader: 'postcss-loader',
+  //   options: {
+  //     ident: 'postcss',
+  //     plugins: [
+  //       /*
+  //         postcss-flexbugs-fixes ：用于修复一些和 flex 布局相关的 bug。
+  //         postcss-preset-env ：将最新的 CSS 语法转换为目标环境的浏览器能够理解的 CSS 语法，目的是使开发者不用考虑浏览器兼容问题。我们使用 autoprefixer 来自动添加浏览器头。
+  //         postcss-normalize ：从 browserslist 中自动导入所需要的 normalize.css 内容。
+  //       */
+  //       // 修复一些和 flex 布局相关的 bug
+  //       require('postcss-flexbugs-fixes'),
+  //       require('postcss-preset-env')({
+  //         autoprefixer: {
+  //           grid: true,
+  //           flexbox: 'no-2009',
+  //         },
+  //         stage: 3,
+  //       }),
+  //       require('postcss-normalize'),
+  //     ],
+  //     sourceMap: isDev,
+  //   },
+  // },
+];
 
 const config: webpack.Configuration = {
   entry: './src/index.tsx', // 告诉 Webpack 从哪里开始寻找要捆绑的模块
@@ -30,32 +71,17 @@ const config: webpack.Configuration = {
           },
         },
       },
+      // 样式文件处理
       {
         test: /\.css$/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: false, // 默认就是 false, 若要开启，可在官网具体查看可配置项
-              sourceMap: isDev, // 开启后与 devtool 设置一致, 开发环境开启，生产环境关闭
-              importLoaders: 0, // 指定在 CSS loader 处理前使用的 laoder 数量
-            },
-          },
-        ],
+        exclude: /node_modules/,
+        use: getCssLoaders(0),
       },
       {
         test: /\.less$/,
+        exclude: /node_modules/,
         use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: false,
-              sourceMap: isDev,
-              importLoaders: 1, // 需要先被 less-loader 处理，所以这里设置为 1
-            },
-          },
+          ...getCssLoaders(1),
           {
             loader: 'less-loader',
             options: {
@@ -66,16 +92,9 @@ const config: webpack.Configuration = {
       },
       {
         test: /\.scss$/,
+        exclude: /node_modules/,
         use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: false,
-              sourceMap: isDev,
-              importLoaders: 1, // 需要先被 sass-loader 处理，所以这里设置为 1
-            },
-          },
+          ...getCssLoaders(1),
           {
             loader: 'sass-loader',
             options: {
@@ -84,10 +103,42 @@ const config: webpack.Configuration = {
           },
         ],
       },
+      // 图片和字体文件处理
+      {
+        test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10 * 1024,
+              name: '[name].[contenthash:8].[ext]',
+              outputPath: 'assets/images',
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(ttf|woff|woff2|eot|otf)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              name: '[name].[contenthash:8].[ext]',
+              outputPath: 'assets/fonts',
+            },
+          },
+        ],
+      },
     ],
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'], // Webpack 在模块解析期间以何种顺序查找哪些文件类型
+    // 别名
+    alias: {
+      Src: path.resolve(PROJECT_PATH, './src'),
+      Components: path.resolve(PROJECT_PATH, './src/components'),
+      Utils: path.resolve(PROJECT_PATH, './src/utils'),
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -113,12 +164,44 @@ const config: webpack.Configuration = {
     // Webpack 进程对代码进行类型检查
     new ForkTsCheckerWebpackPlugin({
       async: false,
+      typescript: {
+        configFile: path.resolve(PROJECT_PATH, './tsconfig.json'),
+      },
     }),
     // 启用 Webpack 进程使用 ESLint 对代码进行检查
     new ESLintPlugin({
       extensions: ['js', 'jsx', 'ts', 'tsx'],
     }),
+    // 拷贝公共静态资源
+    new CopyPlugin({
+      patterns: [
+        {
+          context: path.resolve(PROJECT_PATH, './public'),
+          from: '*',
+          to: path.resolve(PROJECT_PATH, './build'),
+          toType: 'dir',
+        },
+      ],
+    }),
+    // 显示编译进度
+    new WebpackBar({
+      name: isDev ? '正在启动' : '正在打包',
+      color: '#fa8c16',
+    }),
+    // new HardSourceWebpackPlugin(),
   ],
+  // 减少打包体积, 打包后将不会将react, react-dom打入包中
+  externals: {
+    react: 'React',
+    'react-dom': 'ReactDOM',
+  },
+  // 懒加载
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      name: false, // todo: 不知道咋个配置
+    },
+  },
 };
 
 export default config;

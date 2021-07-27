@@ -1,7 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import './app.less';
+import 'Src/index.less';
+
+// todo: 局部刷新报错
+// if (module && module.hot) {
+//   module.hot.accept();
+// }
 
 const App = () => <h1 className='title'>My React and TypeScript App!</h1>;
 
