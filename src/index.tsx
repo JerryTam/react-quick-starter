@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import 'Src/index.less';
+import 'src/index.less';
 
 // todo: 局部刷新报错
 // if (module && module.hot) {

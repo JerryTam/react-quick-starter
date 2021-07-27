@@ -6,6 +6,7 @@ import { merge } from 'webpack-merge';
 import comm from './webpack.common.config';
 
 import { PROJECT_PATH } from '../constant';
+import proxySettings from './proxy/setting';
 
 interface Configuration extends WebpackConfiguration {
   devServer?: WebpackDevServerConfiguration;
@@ -28,6 +29,7 @@ const config: Configuration = {
     compress: true, // 是否启用 gzip 压缩
     open: true, // 打开默认浏览器
     hot: true, // 热更新
+    proxy: { ...proxySettings },
   }, // 配置 Webpack 开发服务器
 };
 
