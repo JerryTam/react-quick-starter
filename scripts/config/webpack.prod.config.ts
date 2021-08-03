@@ -12,7 +12,7 @@ import { PROJECT_PATH } from '../constant';
 
 const config: webpack.Configuration = {
   mode: 'production',
-  // entry: './src/index.tsx',
+  // entry: './src/app.tsx',
 
   plugins: [
     // 去除未使用的样式.

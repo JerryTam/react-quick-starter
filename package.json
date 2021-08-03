@@ -33,6 +33,7 @@
     "@types/optimize-css-assets-webpack-plugin": "^5.0.4",
     "@types/react": "^17.0.15",
     "@types/react-dom": "^17.0.9",
+    "@types/react-router-dom": "^5.1.8",
     "@types/terser-webpack-plugin": "^5.0.4",
     "@types/webpack-bundle-analyzer": "^4.4.1",
     "@types/webpack-dev-server": "^3.11.5",
@@ -102,14 +103,13 @@
     ],
     "*.{ts,tsx,js,json,html,yml,css,less,scss,md}": [
       "prettier --write",
-      "eslint",
-      "stylelint  --config .stylelintrc.js",
       "git add"
     ]
   },
   "dependencies": {
     "axios": "^0.21.1",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^5.2.0"
   }
 }

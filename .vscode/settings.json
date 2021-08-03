@@ -36,7 +36,12 @@
   "[scss]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
   "typescript.tsdk": "./node_modules/typescript/lib", // 代替 vscode 的 ts 语法智能提示
   "editor.codeActionsOnSave": {
     // // eslint配置项，保存时自动修复
@@ -46,6 +51,6 @@
   "css.validate": false,
   "less.validate": false,
   "scss.validate": false,
-
   "editor.formatOnSave": true,
+  "prettier.stylelintIntegration": true
 }

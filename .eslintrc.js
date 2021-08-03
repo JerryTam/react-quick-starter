@@ -52,6 +52,7 @@ module.exports = {
 
     'unicorn/better-regex': ERROR,
     'unicorn/prevent-abbreviations': OFF,
+    'unicorn/prefer-node-protocol': OFF,
     'unicorn/filename-case': [
       ERROR,
       {

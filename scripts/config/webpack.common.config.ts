@@ -1,5 +1,5 @@
 import path from 'path';
-import webpack, { Configuration as WebpackConfiguration } from 'webpack';
+import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import ESLintPlugin from 'eslint-webpack-plugin';
@@ -11,7 +11,7 @@ import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 
 import { isDev, PROJECT_PATH } from '../constant';
 
-const getCssLoaders = (importLoaders: Number) => [
+const getCssLoaders = (importLoaders: number) => [
   isDev ? 'style-loader' : MiniCssExtractPlugin.loader, // 抽离css样式
   {
     loader: 'css-loader',
@@ -50,7 +50,7 @@ const getCssLoaders = (importLoaders: Number) => [
 
 let plugins = [
   new HtmlWebpackPlugin({
-    template: 'src/index.html', // 使用在src文件夹中的index.html作为模板。
+    template: './index.html', // 使用在public文件夹中的index.html作为模板。
     cache: false, // 特别重要：防止之后使用v6版本 copy-webpack-plugin 时代码修改一刷新页面为空问题。
     minify: isDev
       ? false
@@ -122,7 +122,7 @@ if (!isDev) {
 }
 
 const config: webpack.Configuration = {
-  entry: './src/index.tsx', // 告诉 Webpack 从哪里开始寻找要捆绑的模块
+  entry: './src/app.tsx', // 告诉 Webpack 从哪里开始寻找要捆绑的模块
   output: {
     path: path.resolve(PROJECT_PATH, './build'),
     // filename: '[name].[contenthash].js',
@@ -210,9 +210,10 @@ const config: webpack.Configuration = {
     extensions: ['.tsx', '.ts', '.js'], // Webpack 在模块解析期间以何种顺序查找哪些文件类型
     // 别名
     alias: {
-      src: path.resolve(PROJECT_PATH, './src'),
-      components: path.resolve(PROJECT_PATH, './src/components'),
-      utils: path.resolve(PROJECT_PATH, './src/utils'),
+      '@src': path.resolve(PROJECT_PATH, './src'),
+      '@components': path.resolve(PROJECT_PATH, './src/components'),
+      '@utils': path.resolve(PROJECT_PATH, './src/utils'),
+      '@router': path.resolve(PROJECT_PATH, './src/router'),
     },
   },
   plugins,

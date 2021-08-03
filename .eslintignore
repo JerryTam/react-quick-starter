@@ -1,5 +1,9 @@
 /node_modules
 /build
 /dist
-/scripts
+# /scripts
+/public
 package.json
+tsconfig.json
+package-lock.json
+index.html

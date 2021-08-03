@@ -17,5 +17,14 @@ module.exports = {
     'no-invalid-double-slash-comments': null,
     'rule-empty-line-before': 'always',
   },
-  ignoreFiles: ['node_modules/**/*', 'build/**/*', 'dist/**/*', 'package.json'],
+  ignoreFiles: [
+    'node_modules/**/*',
+    'build/**/*',
+    'dist/**/*',
+    'scripts/**/*',
+    '.history/**/*',
+    'package.json',
+    'package-lock.json',
+    'tsconfig.json',
+  ],
 };
